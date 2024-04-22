@@ -9,12 +9,12 @@ import {DevOpsTools} from "lib/foundry-devops/src/DevOpsTools.sol";
 
 contract MintBasicNFT is Script {
     string private constant STRING_URI = "ipfs://aSDASdasdsadsad3";
-    function run() external returns (BasicNFT) {
+    function run() external {
        address mostRecentBasicNFT = DevOpsTools.get_most_recent_deployment("BasicNFT", block.chainid);
-        return mintNFTOnContract(mostRecentBasicNFT);
+       mintNFTOnContract(mostRecentBasicNFT);
     }
 
-    function mintNFTOnContract(address contractAddress) public returns (BasicNFT){
+    function mintNFTOnContract(address contractAddress) public{
 
         vm.broadcast();
         BasicNFT(contractAddress).mintNFT(STRING_URI);
@@ -26,12 +26,12 @@ contract MintBasicNFT is Script {
 
 contract MintMoodNFT is Script {
     
-    function run() external returns (MoodNFT) {
+    function run() external {
        address mostRecentMoodNFT = DevOpsTools.get_most_recent_deployment("MoodNFT", block.chainid);
-        return mintNFTOnContract(mostRecentMoodNFT);
+       mintNFTOnContract(mostRecentMoodNFT);
     }
 
-    function mintNFTOnContract(address contractAddress) public returns (MoodNFT){
+    function mintNFTOnContract(address contractAddress) public {
 
         vm.broadcast();
         MoodNFT(contractAddress).mintNFT();
