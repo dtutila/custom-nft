@@ -4,6 +4,7 @@ pragma solidity ^0.8.25;
 
 import {Script} from "forge-std/Script.sol";
 import {MoodNFT} from "../src/MoodNFT.sol";
+import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
 
 contract DeployMoodNFT is Script {
     string public constant HAPPY_SVG = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgd2lkdGg9IjQwMCIgIGhlaWdodD0iNDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgZmlsbD0ieWVsbG93IiByPSI3OCIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGcgY2xhc3M9ImV5ZXMiPgogICAgPGNpcmNsZSBjeD0iNjEiIGN5PSI4MiIgcj0iMTIiLz4KICAgIDxjaXJjbGUgY3g9IjEyNyIgY3k9IjgyIiByPSIxMiIvPgogIDwvZz4KICA8cGF0aCBkPSJtMTM2LjgxIDExNi41M2MuNjkgMjYuMTctNjQuMTEgNDItODEuNTItLjczIiBzdHlsZT0iZmlsbDpub25lOyBzdHJva2U6IGJsYWNrOyBzdHJva2Utd2lkdGg6IDM7Ii8+Cjwvc3ZnPg==";
@@ -16,5 +17,13 @@ contract DeployMoodNFT is Script {
         vm.stopBroadcast();
 
         return mnft;
+    }
+
+      function svgToImageURI(string memory svg) public pure returns (string memory) {
+        string memory baseURI = "data:image/svg+xml;base64,";
+        string memory svgBase64Encoded = Base64.encode(
+            bytes(abi.encodePacked(svg)) 
+        );
+        return string(abi.encodePacked(baseURI, svgBase64Encoded));
     }
 }
