@@ -22,7 +22,10 @@ contract MoodNFTTest is Test {
         vm.prank(alice);
         nft.mintNFT();
         
-        //assertEq();
+        assertEq(
+            keccak256(abi.encodePacked(HAPPY_SVG)),
+            keccak256(abi.encodePacked(nft.getMood(1) == 0 ? HAPPY_SVG : SAD_SVG))
+        );
     }
 
 
