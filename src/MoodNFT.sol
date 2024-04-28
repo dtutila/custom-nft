@@ -57,6 +57,11 @@ contract MoodNFT is ERC721 {
         if (s_tokenIdToMood[tokenId] == Mood.SAD) {
             imageURI = s_sadImageURI;
         }
+        return generateURI(name(), imageURI);
+    }
+
+    function generateURI(string memory name, string memory imageURI) public pure returns (string memory) {
+
         return string(
             abi.encodePacked(
                 _baseURI(),
@@ -64,7 +69,7 @@ contract MoodNFT is ERC721 {
                     bytes( 
                         abi.encodePacked(
                             '{"name":"',
-                            name(), 
+                            name, 
                             '", "description":"An NFT that reflects the mood of the owner, 100% on Chain!", ',
                             '"attributes": [{"trait_type": "moodiness", "value": 100}], "image":"',
                             imageURI,
