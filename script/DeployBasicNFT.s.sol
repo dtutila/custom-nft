@@ -2,7 +2,6 @@
 
 pragma solidity ^0.8.25;
 
-
 import {Script} from "forge-std/Script.sol";
 import {BasicNFT} from "../src/BasicNFT.sol";
 
