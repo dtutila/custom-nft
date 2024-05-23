@@ -1,6 +1,6 @@
 // SPDX-License-IdentifierP: MIT
 
-pragma solidity ^0.8.25;
+pragma solidity 0.8.25;
 
 import {Script, console} from "forge-std/Script.sol";
 import {MoodNFT} from "../src/MoodNFT.sol";
